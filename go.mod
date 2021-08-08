@@ -1,3 +1,3 @@
-module github.com/7045kHz/dcon/v0
+module github.com/7045kHz/dcon
 
-go 1.16
+go 1.15
