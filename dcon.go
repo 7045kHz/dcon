@@ -1,4 +1,4 @@
-package jpw
+package dcon
 
 import (
 	"encoding/json"
