@@ -14,7 +14,7 @@ type Database struct {
 }
 
 type Databases struct {
-	Databases []Database `json:"Databases`
+	Databases []Database `json:"Databases"`
 }
 
 /* Example Call
@@ -40,7 +40,7 @@ fmt.Println(x)
 	  	]
 */
 
-var dbConfigFile string
+//var dbConfigFile string
 
 func GetConnectString(dbConfigFile string, ConnectName string) string {
 	var ConnectString string
