@@ -1,3 +1,3 @@
-module github.com/7045kHz/DBconnect/jpw/v0
+module github.com/7045kHz/dcon/v0
 
 go 1.16
