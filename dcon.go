@@ -7,10 +7,11 @@ import (
 )
 
 type Database struct {
-	Connection    string `json:"Connection"`
-	DB            string `json:"dbType"`
-	Description   string `json:"Description"`
-	ConnectString string `json:"ConnectString"`
+	Connection        string `json:"Connection"`
+	DB                string `json:"dbType"`
+	Description       string `json:"Description"`
+	ConnectString     string `json:"ConnectString"`
+	CMD_ConnectString string `json:"CMD_ConnectString"`
 }
 
 type Databases struct {
@@ -61,6 +62,33 @@ func GetConnectString(dbConfigFile string, ConnectName string) string {
 			//fmt.Println("Description: " + databases.Databases[i].Description)
 			//fmt.Println("Connect String: " + databases.Databases[i].ConnectString)
 			ConnectString = databases.Databases[i].ConnectString
+		}
+	}
+	if len(ConnectString) < 1 {
+		ConnectString = "MISSING"
+	}
+
+	return ConnectString
+}
+func GetCMDConnectString(dbConfigFile string, ConnectName string) string {
+	var ConnectString string
+	var databases Databases
+
+	dbList, err := ioutil.ReadFile(dbConfigFile)
+	if err != nil {
+		fmt.Print(err)
+	}
+	err = json.Unmarshal(dbList, &databases)
+	if err != nil {
+		fmt.Println("error:", err)
+	}
+	for i := 0; i < len(databases.Databases); i++ {
+		if databases.Databases[i].Connection == ConnectName {
+			//fmt.Println("Name: " + databases.Databases[i].Name)
+			//fmt.Println("DB: " + databases.Databases[i].DB)
+			//fmt.Println("Description: " + databases.Databases[i].Description)
+			//fmt.Println("Connect String: " + databases.Databases[i].ConnectString)
+			ConnectString = databases.Databases[i].CMD_ConnectString
 		}
 	}
 	if len(ConnectString) < 1 {
